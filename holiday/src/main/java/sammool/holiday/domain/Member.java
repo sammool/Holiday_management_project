@@ -22,7 +22,4 @@ public class Member {
    private int leftover_days; //잔여 휴가 일 수
    private int points;//상점
 
-
-
-    
 }
