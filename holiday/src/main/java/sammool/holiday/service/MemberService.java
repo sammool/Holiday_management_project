@@ -17,7 +17,7 @@ public class MemberService {
     }
 
     public Optional<Member> findById(String id){
-        Optional<Member> findMember = memberRepository.findById(id);
+        Optional<Member> findMembe = memberRepository.findById(id);
         /*
          * null일 경우 대처 코드
          */
