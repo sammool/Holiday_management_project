@@ -1,4 +1,4 @@
-package sammool.holiday.controller;
+package sammool;
 
 import java.util.ArrayList;
 import java.util.List;

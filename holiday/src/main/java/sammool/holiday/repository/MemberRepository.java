@@ -1,11 +1,11 @@
 package sammool.holiday.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import sammool.holiday.domain.Member;
+import java.util.List;
 
 public interface MemberRepository {
-    public Member save(Member member);
-    public List<Member> findAll();
-    public Member findById(String id);
+    
+    Member save(Member member);
+    List<Member> findAll();
+    Member findById(String id);
 }

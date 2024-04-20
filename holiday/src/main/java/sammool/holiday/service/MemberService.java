@@ -12,17 +12,7 @@ import sammool.holiday.repository.MemberRepository;
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public void save(Member member){
-        memberRepository.save(member);
-    }
 
-    public Optional<Member> findById(String id){
-        Optional<Member> findMembe = memberRepository.findById(id);
-        /*
-         * null일 경우 대처 코드
-         */
-        return findMember;
-    }
     
     
 }
