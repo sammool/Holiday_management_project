@@ -22,6 +22,20 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
+    public void createTable(){
+        String sql = "CREATE TABLE IF NOT EXISTS member ("
+        + "member_id VARCHAR(30), "
+        + "degree VARCHAR(3) NOT NULL, "
+        + "name VARCHAR(10) NOT NULL, "
+        + "leftover_days INTEGER DEFAULT 0,"
+        + "points INTEGER DEFAULT 0,"
+        + "PRIMARY KEY (member_id)"
+        + ")";
+
+        template.update(sql);
+    }
+
+    @Override
     public Member save(Member member){
         String sql = "insert into member(member_id, degree, name, leftover_days, points) values(?, ?, ?, ? ,?)";
         template.update(sql, member.getMember_id(),member.getDegree(),member.getName(),member.getLeftover_days(),member.getPoints());
@@ -37,6 +51,13 @@ public class JdbcMemberRepository implements MemberRepository{
     public List<Member> findAll(){
         String sql = "select * from member";
         return template.query(sql, memberRowMapper());
+    }
+
+    @Override
+    public void update(Member member){
+        String sql = "UPDATE member SET leftover_days = ?, points = ? where member_id = ?";
+
+        template.update(sql,member.getLeftover_days(),member.getPoints(),member.getMember_id());
     }
 
     private RowMapper<Member> memberRowMapper(){

@@ -1,5 +1,6 @@
 package sammool.holiday.repository;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,13 +21,15 @@ public class JdbcMemberRepositoryTest {
         dataSource.setPassword(PASSWORD);
 
         repository = new JdbcMemberRepository(dataSource);
+        repository.createTable();
     }
     
 
     @Test
     void FindAll() {
         Member member = new Member("23-76030904","상병","박찬규",25,94);
-        repository.save(member);
+        Member savedMember = repository.save(member);
+        Assertions.assertThat(savedMember.getMember_id()).isEqualTo("23-76030904");
     }
 
 
