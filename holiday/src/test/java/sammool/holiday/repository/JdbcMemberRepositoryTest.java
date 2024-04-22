@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.zaxxer.hikari.HikariDataSource;
 import static sammool.ConnectionConst.*;
 import sammool.holiday.domain.Member;
+import sammool.holiday.repository.JdbcMemberRepository;
 
 public class JdbcMemberRepositoryTest {
 

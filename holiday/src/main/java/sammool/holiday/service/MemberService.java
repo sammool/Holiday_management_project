@@ -7,12 +7,12 @@ import lombok.RequiredArgsConstructor;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.MemberRepository;
 
-@Service
-@RequiredArgsConstructor
-public class MemberService {
-    private final MemberRepository memberRepository;
 
-
+public interface MemberService {
+    void useHoliday(String id, int days);
+    void minusPoint(String id, int point);
+    void pointToHoliday(String id);
+    Member plusPoint(String id, int point);
     
 }
 

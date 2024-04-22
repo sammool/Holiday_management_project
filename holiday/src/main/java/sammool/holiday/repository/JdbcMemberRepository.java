@@ -1,6 +1,4 @@
 package sammool.holiday.repository;
-
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
