@@ -1,31 +1,39 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 입력 폼</title>
 </head>
+
 <body>
 <h2>회원 정보 입력</h2>
-<form th:action th:object="${member}" method="post">
-  <label for="number">군번:</label><br>
-  <input type="text" id="number" name="number" placeholder="군번을 입력하세요"><br>
+<form th:action method="post">
+  
+  <label for="member_id">군번:</label><br>
+  <input type="text" id="member_id" name="member_id" placeholder="군번을 입력하세요"><br>
+  
   <label for="degree">계급:</label><br>
   <input type="text" id="degree" name="degree" placeholder="계급을 입력하세요"><br>
+  
   <label for="name">이름:</label><br>
-  <input type="text" id="name" name="name"placeholder="이름을 입력하세요"><br>
+  <input type="text" id="name" name="name" placeholder="이름을 입력하세요"><br>
+  
   <label for="leftover_days">잔여 휴가 일 수:</label><br>
   <input type="number" id="leftover_days" name="leftover_days" placeholder="잔여 휴가 일 수 입력하세요"><br>
+  
   <label for="points">상점:</label><br>
-  <input type="number" id="points" name="points" placeholder="군번을 입력하세요"><br><br>
+  <input type="number" id="points" name="points" placeholder="상점을 입력하세요"><br><br>
 
   <div>
   <button type="submit">정보 등록</button>
   </div>
+  
   <div>
     <button 
         th:onclick="|location.href='@{/home/members}'|"
         type="button">취소</button>
   </div>
+
 </form> 
 </body>
-</html>
+</html> -->

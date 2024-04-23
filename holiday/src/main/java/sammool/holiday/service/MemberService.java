@@ -9,9 +9,9 @@ import sammool.holiday.repository.MemberRepository;
 
 
 public interface MemberService {
-    void useHoliday(String id, int days);
-    void minusPoint(String id, int point);
-    void pointToHoliday(String id);
+    Member useHoliday(String id, int days);
+    Member minusPoint(String id, int point);
+    Member pointToHoliday(String id);
     Member plusPoint(String id, int point);
     
 }

@@ -12,21 +12,24 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void useHoliday(String id, int days){
+    public Member useHoliday(String id, int days){
         Member member = repository.findById(id);
         member.setLeftover_days(member.getLeftover_days()-days);
         repository.update(member);
+
+        return member;
     }
 
     @Override
-    public void minusPoint(String id, int point){
+    public Member minusPoint(String id, int point){
         Member member = repository.findById(id);
         member.setPoints(member.getPoints() - point);
         repository.update(member);
+        return member;
     }
 
     @Override
-    public void pointToHoliday(String id){
+    public Member pointToHoliday(String id){
         Member member = repository.findById(id);
         while(member.getPoints() >= 20){
             member.setLeftover_days(member.getLeftover_days() + 1);
@@ -34,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
             repository.update(member);
         }
         repository.update(member);
+        return member;
     
     }
 
@@ -43,11 +47,6 @@ public class MemberServiceImpl implements MemberService {
         member.setPoints(member.getPoints() + point);
         repository.update(member);
         
-        // if(member.getPoints() >= 20){
-        //     pointToHoliday(id);
-        //     return;
-        // }
-       
         return member;
     }
 }

@@ -20,7 +20,6 @@ public class MemberController {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
     public MemberController(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
