@@ -1,4 +1,4 @@
-package sammool;
+package sammool.holiday;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 import sammool.holiday.domain.Member;
+import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.MemberRepository;
 
 @Controller
 @RequestMapping("/home")
 public class MemberController {
 
+    @Autowired
     private final MemberRepository memberRepository;
 
-    public MemberController(MemberRepository memberRepository){
+    public MemberController(JdbcMemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
 

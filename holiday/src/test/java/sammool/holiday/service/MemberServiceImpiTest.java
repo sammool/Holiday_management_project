@@ -1,5 +1,7 @@
 package sammool.holiday.service;
 
+import static sammool.holiday.connection.ConnectionConst.*;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,6 @@ import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.MemberRepository;
 
 import com.zaxxer.hikari.HikariDataSource;
-import static sammool.ConnectionConst.*;
 
 public class MemberServiceImpiTest {
    

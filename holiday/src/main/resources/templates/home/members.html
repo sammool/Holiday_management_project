@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www/thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 </head>
@@ -8,6 +8,7 @@
 
 <h2>리스트</h2>
 
+<table>
 <thead>
 <tr>
 <th>군번</th>
@@ -17,15 +18,16 @@
 <th>상점</th>
 </tr>
 </thead>
+
 <tbody>
 <tr th:each="member : ${members}">
-    <td><a href="item.html" th:href="@{/basic/items/{itemId}(itemId=${item.id})}" th:text="${member.number}">군번</a></td>
-    <td><a href="item.html" th:href="@{/basic/items/{itemId}(itemId=${item.id})}" th:text="${member.name}">성명</a></td>
-    <td th:text="${member.leftover_days}">10000 </td>
-    <td th:text="${member.points}">10</td>
+    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.member_id}">군번</a></td>
+    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.name}">성명</a></td>
+    <td th:text="${member.leftover_days}"> </td>
+    <td th:text="${member.points}"></td>
 </tr>
 </tbody>
-</table></div>
-</div> <!-- /container -->
+</table>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 package sammool.holiday.repository;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.MemberRepository; 
 
+@Repository
 public class JdbcMemberRepository implements MemberRepository{
 
     private final JdbcTemplate template;

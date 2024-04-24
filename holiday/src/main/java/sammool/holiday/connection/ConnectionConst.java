@@ -1,4 +1,4 @@
-package sammool;
+package sammool.holiday.connection;
 
 
 public abstract class ConnectionConst {
