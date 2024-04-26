@@ -1,18 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
+<title>멤버리스트</title>
 </head>
 <body>
     
-
 <h2>리스트</h2>
 
 <table>
 <thead>
 <tr>
 <th>군번</th>
-<th>계급</th>
 <th>이름</th>
 <th>잔여 휴가</th>
 <th>상점</th>
@@ -21,9 +20,9 @@
 
 <tbody>
 <tr th:each="member : ${members}">
-    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.member_id}">군번</a></td>
-    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.name}">성명</a></td>
-    <td th:text="${member.leftover_days}"> </td>
+    <td th:text="${member.member_id}"></td>
+    <td th:text="${member.name}"></td>
+    <td th:text="${member.leftover_days}"></td>
     <td th:text="${member.points}"></td>
 </tr>
 </tbody>

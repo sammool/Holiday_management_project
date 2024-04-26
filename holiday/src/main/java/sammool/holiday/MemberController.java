@@ -42,7 +42,8 @@ public class MemberController {
     @PostMapping("/add")
     public String addMember(@ModelAttribute("member") Member member, Model model){
         memberRepository.save(member);
-        model.addAttribute("member", member);
+        List<Member> members = memberRepository.findAll();
+        model.addAttribute("members", members);
         return "home/members";
     }
     
