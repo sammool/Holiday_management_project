@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>멤버 정보</title>
+</head>
+<body>
+    
+<h2>멤버 정보</h2>
+
+<table>
+<thead>
+<tr>
+<th>군번</th>
+<th>이름</th>
+<th>잔여 휴가</th>
+<th>상점</th>
+</tr>
+</thead>
+
+<tbody>
+<tr th:each="member : ${members}">
+    <td><a href="@{home/member/{member_id}(member_id={member.member_id})}" th:text="${member.member_id}"></td>
+    <td><a href="@{home/member/{name}(name={member.name})}" th:text="${member.name}"></td>
+    <td th:text="${member.leftover_days}"></td>
+    <td th:text="${member.points}"></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
@@ -32,6 +33,12 @@ public class MemberController {
         model.addAttribute("members", members);
 
         return "home/members";
+    }
+
+    @GetMapping("/members/{member_id}")
+    public String member(Model model, @PathVariable String member_id){
+        
+        return "";
     }
 
     @GetMapping("/add")
