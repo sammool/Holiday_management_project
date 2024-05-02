@@ -8,25 +8,25 @@
     
 <h2>멤버 정보</h2>
 
-<table>
-<thead>
-<tr>
-<th>군번</th>
-<th>이름</th>
-<th>잔여 휴가</th>
-<th>상점</th>
-</tr>
-</thead>
-
-<tbody>
-<tr th:each="member : ${members}">
-    <td><a href="@{home/member/{member_id}(member_id={member.member_id})}" th:text="${member.member_id}"></td>
-    <td><a href="@{home/member/{name}(name={member.name})}" th:text="${member.name}"></td>
-    <td th:text="${member.leftover_days}"></td>
-    <td th:text="${member.points}"></td>
-</tr>
-</tbody>
-</table>
+<div>
+    <label for="member_id">군번</label>
+    <input type="text" id="member_id" name="member_id" th:value = "${member.member_id}" readonly>
+    </div>
+    
+    <div>
+    <label for="name">성명</label>
+    <input type="text" id="name" name="name" th:value = "${member.name}" readonly>
+    </div>
+    
+    <div>
+    <label for="leftover_days">잔여 휴가</label>
+    <input type="text" id="leftover_days" name="leftover_days" th:value = "${member.leftover_days}" readonly>
+    </div>
+    
+    <div>
+    <label for="points">상점</label>
+    <input type="text" id="points" name="points" th:value = "${member.points}" readonly>
+    </div>
 
 </body>
 </html>

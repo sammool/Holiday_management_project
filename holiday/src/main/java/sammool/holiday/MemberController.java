@@ -37,8 +37,9 @@ public class MemberController {
 
     @GetMapping("/members/{member_id}")
     public String member(Model model, @PathVariable String member_id){
-        
-        return "";
+        Member member = memberRepository.findById(member_id);
+        model.addAttribute("member", member);
+        return "home/member";
     }
 
     @GetMapping("/add")
