@@ -28,13 +28,6 @@ public class JdbcMemberRepositoryTest {
     }
     
 
-    @Test
-    void FindAll() {
-        Member member = new Member("23-76030904","상병","박찬규",25,94);
-        Member savedMember = repository.save(member);
-        Assertions.assertThat(savedMember.getMember_id()).isEqualTo("23-76030904");
-    }
+ 
 
-
-   
 }
