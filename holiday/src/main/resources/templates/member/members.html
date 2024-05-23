@@ -20,8 +20,8 @@
 
 <tbody>
 <tr th:each="member : ${members}">
-    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.member_id}"></td>
-    <td><a th:href="@{/home/members/{member_id}(member_id=${member.member_id})}" th:text="${member.name}"></td>
+    <td><a th:href="@{/members/{member_id}(member_id=${member.member_id})}" th:text="${member.member_id}"></td>
+    <td><a th:href="@{/members/{member_id}(member_id=${member.member_id})}" th:text="${member.name}"></td>
     <td th:text="${member.leftover_days}"></td>
     <td th:text="${member.points}"></td>
 </tr>

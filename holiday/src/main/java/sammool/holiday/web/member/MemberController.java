@@ -1,4 +1,4 @@
-package sammool.holiday;
+package sammool.holiday.web.member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.MemberRepository;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping
 public class MemberController {
 
     @Autowired
@@ -32,19 +32,19 @@ public class MemberController {
         List<Member> members = memberRepository.findAll();
         model.addAttribute("members", members);
 
-        return "home/members";
+        return "member/members";
     }
 
     @GetMapping("/members/{member_id}")
     public String member(Model model, @PathVariable String member_id){
         Member member = memberRepository.findById(member_id);
         model.addAttribute("member", member);
-        return "home/member";
+        return "member/member";
     }
 
     @GetMapping("/add")
     public String add(){
-        return "home/addForm";
+        return "member/addForm";
     }
 
     @PostMapping("/add")
@@ -52,7 +52,7 @@ public class MemberController {
         memberRepository.save(member);
         List<Member> members = memberRepository.findAll();
         model.addAttribute("members", members);
-        return "home/members";
+        return "member/members";
     }
     
 }

@@ -4,8 +4,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import javax.swing.text.html.Option;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.List;
 import java.util.HashMap;
 
@@ -60,6 +62,8 @@ public class JdbcMemberRepository implements MemberRepository{
         template.update(sql,member.getLeftover_days(),member.getPoints(),member.getMember_id());
     }
 
+    
+
     private RowMapper<Member> memberRowMapper(){
         return (rs,rowNum) -> {
             Member member = new Member();
@@ -68,6 +72,7 @@ public class JdbcMemberRepository implements MemberRepository{
             member.setName(rs.getString("name"));
             member.setLeftover_days(rs.getInt("leftover_days"));
             member.setPoints(rs.getInt("points"));
+            
             return member;
         };
     }
