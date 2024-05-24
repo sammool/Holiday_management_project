@@ -10,13 +10,18 @@
 </div>
 
 <div>
+    <h4 th:text="|로그인: ${member.name}|"></p>
+</div>
+
+<div>
 <button type="button" th:onclick="|location.href='@{/register}'|">
 회원 가입
 </button>
 
-<button th:onclick="|location.href='@{/login}'|" type="button">
-    로그인
-</button>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">
+    로그아웃
+    </button>
 </div>
 
 

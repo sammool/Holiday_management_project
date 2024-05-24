@@ -26,6 +26,7 @@ public class RegisterContoller {
 
     @PostMapping("/register")
     public String register(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){
+        
         if(bindingResult.hasErrors()){
             log.info("errors={}", bindingResult);
             return "register/registerForm";

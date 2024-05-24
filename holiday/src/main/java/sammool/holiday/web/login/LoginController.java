@@ -47,7 +47,16 @@ public class LoginController {
 
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-        return "/";
+        return "redirect:http://zany-guide-xgj9p74gqg7f6g9r-8080.app.github.dev/";
+    }
 
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+
+         return "redirect:http://zany-guide-xgj9p74gqg7f6g9r-8080.app.github.dev/";
     }
 }

@@ -28,6 +28,7 @@ public class JdbcMemberRepository implements MemberRepository{
     public void createTable(){
         String sql = "CREATE TABLE IF NOT EXISTS member ("
         + "member_id VARCHAR(30), "
+        + "password String NOT NULL,"
         + "degree VARCHAR(3) NOT NULL, "
         + "name VARCHAR(10) NOT NULL, "
         + "leftover_days INTEGER DEFAULT 0,"
@@ -40,8 +41,8 @@ public class JdbcMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> save(Member member){
-        String sql = "insert into member(member_id, degree, name, leftover_days, points) values(?, ?, ?, ? ,?)";
-        template.update(sql, member.getMember_id(),member.getDegree(),member.getName(),member.getLeftover_days(),member.getPoints());
+        String sql = "insert into member(member_id, password, degree, name, leftover_days, points) values (?, ?, ?, ?, ? ,?)";
+        template.update(sql, member.getMember_id(),member.getPassword(), member.getDegree(),member.getName(),member.getLeftover_days(),member.getPoints());
         return Optional.of(member);
     }
     @Override
@@ -77,6 +78,7 @@ public class JdbcMemberRepository implements MemberRepository{
         return (rs,rowNum) -> {
             Member member = new Member();
             member.setMember_id(rs.getString("member_id"));
+            member.setPassword(rs.getString("password"));
             member.setDegree(rs.getString("degree"));
             member.setName(rs.getString("name"));
             member.setLeftover_days(rs.getInt("leftover_days"));

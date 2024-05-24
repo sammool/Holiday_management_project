@@ -19,8 +19,8 @@ public class LoginService {
      * null 리턴하면 실패
      */
     public Member login(String memberId, String password){
-        return memberRepository.findById(memberId).
-            filter(m->m.getPassword().equals(memberId))
+        return memberRepository.findById(memberId)
+            .filter(m->m.getPassword().equals(password))
             .orElse(null);
     }
 }
