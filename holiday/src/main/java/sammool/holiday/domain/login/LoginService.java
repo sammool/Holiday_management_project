@@ -1,5 +1,7 @@
 package sammool.holiday.domain.login;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,11 +19,8 @@ public class LoginService {
      * null 리턴하면 실패
      */
     public Member login(String memberId, String password){
-        Member member = memberRepository.findById(memberId);
-        if(member.getPassword().equals(password)){
-            return member;
-        }
-        else
-            return null;
+        return memberRepository.findById(memberId).
+            filter(m->m.getPassword().equals(memberId))
+            .orElse(null);
     }
 }

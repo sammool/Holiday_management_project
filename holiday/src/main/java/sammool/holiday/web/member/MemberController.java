@@ -2,6 +2,7 @@ package sammool.holiday.web.member;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class MemberController {
 
     @GetMapping("/members/{member_id}")
     public String member(Model model, @PathVariable String member_id){
-        Member member = memberRepository.findById(member_id);
+        Optional<Member> member = memberRepository.findById(member_id);
         model.addAttribute("member", member);
         return "member/member";
     }

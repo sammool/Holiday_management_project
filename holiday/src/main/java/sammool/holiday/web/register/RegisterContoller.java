@@ -20,7 +20,7 @@ public class RegisterContoller {
     private final MemberRepository memberRepository;
 
     @GetMapping("/register")
-    public String registerForm(){
+    public String registerForm(@ModelAttribute("member") Member member){
         return "register/registerForm";
     }
 
@@ -32,6 +32,7 @@ public class RegisterContoller {
         }
 
         memberRepository.save(member);
+        log.info("회원가입 완료 member={}",member);
         return "home/home";
     }
 }

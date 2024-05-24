@@ -1,4 +1,5 @@
 package sammool.holiday.repository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -38,15 +39,22 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Member save(Member member){
+    public Optional<Member> save(Member member){
         String sql = "insert into member(member_id, degree, name, leftover_days, points) values(?, ?, ?, ? ,?)";
         template.update(sql, member.getMember_id(),member.getDegree(),member.getName(),member.getLeftover_days(),member.getPoints());
-        return member;
+        return Optional.of(member);
     }
     @Override
-    public Member findById(String member_id){
+    public Optional<Member> findById(String member_id){
         String sql = "select * from member where member_id = ?";
-        return template.queryForObject(sql, memberRowMapper(),member_id);
+        try{
+            Member member = template.queryForObject(sql, memberRowMapper(),member_id);
+            return Optional.of(member);
+        }catch(EmptyResultDataAccessException e){
+            //빈 객체 반환
+            return Optional.empty();
+        }
+       
     }
 
     @Override
@@ -56,10 +64,11 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
-    public void update(Member member){
+    public Optional<Member> update(Member member){
         String sql = "UPDATE member SET leftover_days = ?, points = ? where member_id = ?";
 
         template.update(sql,member.getLeftover_days(),member.getPoints(),member.getMember_id());
+        return Optional.of(member);
     }
 
     
