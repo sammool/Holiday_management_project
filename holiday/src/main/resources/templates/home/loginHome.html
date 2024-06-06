@@ -14,8 +14,8 @@
 </div>
 
 <div>
-<button type="button" th:onclick="|location.href='@{/register}'|">
-회원 가입
+<button type="button" th:onclick="|location.href='@{/members/{member_id}(member_id=${member.member_id})}'|">
+내 정보
 </button>
 
 <form th:action="@{/logout}" method="post">

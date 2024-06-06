@@ -38,9 +38,15 @@ public class MemberController {
 
     @GetMapping("/members/{member_id}")
     public String member(Model model, @PathVariable String member_id){
-        Optional<Member> member = memberRepository.findById(member_id);
-        model.addAttribute("member", member);
-        return "member/member";
+        Optional<Member> optionalMember = memberRepository.findById(member_id);
+        if(optionalMember.isPresent()){
+            Member member = optionalMember.get();
+            model.addAttribute("member", member);
+            return "member/member";
+        } else{
+            return "member/member";
+        }
+        
     }
 
     @GetMapping("/add")

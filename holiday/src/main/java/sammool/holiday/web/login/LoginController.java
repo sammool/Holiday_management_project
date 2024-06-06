@@ -47,7 +47,7 @@ public class LoginController {
 
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-        return "redirect:http://zany-guide-xgj9p74gqg7f6g9r-8080.app.github.dev/";
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
 
     @PostMapping("/logout")
@@ -57,6 +57,6 @@ public class LoginController {
             session.invalidate();
         }
 
-         return "redirect:http://zany-guide-xgj9p74gqg7f6g9r-8080.app.github.dev/";
+         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
 }
