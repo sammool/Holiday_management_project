@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.MemberRepository;
+import java.util.Optional;
 
 @Slf4j
 @Controller
@@ -27,6 +28,11 @@ public class RegisterContoller {
     @PostMapping("/register")
     public String register(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){
         
+        Optional<Member> findMember = memberRepository.findById(member.getMember_id());
+        if(findMember.isPresent()){
+            bindingResult.rejectValue("member_id","duplicated",null,null);
+        }
+
         if(bindingResult.hasErrors()){
             log.info("errors={}", bindingResult);
             return "register/registerForm";
