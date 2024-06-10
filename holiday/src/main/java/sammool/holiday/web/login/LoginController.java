@@ -15,6 +15,7 @@ import sammool.holiday.domain.Member;
 import sammool.holiday.domain.login.LoginService;
 import sammool.holiday.repository.MemberRepository;
 import sammool.holiday.web.SessionConst;
+import sammool.holiday.web.form.LoginForm;
 
 @Slf4j
 @Controller

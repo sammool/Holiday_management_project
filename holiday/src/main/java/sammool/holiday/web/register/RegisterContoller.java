@@ -2,6 +2,7 @@ package sammool.holiday.web.register;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +31,8 @@ public class RegisterContoller {
         
         Optional<Member> findMember = memberRepository.findById(member.getMember_id());
         if(findMember.isPresent()){
-            bindingResult.rejectValue("member_id","duplicated",null,null);
+           //application.yml은 errors,messages 등록 X
+            bindingResult.rejectValue("member_id",null,null,"중복된 군번입니다. 다시 입력해주세요.");
         }
 
         if(bindingResult.hasErrors()){

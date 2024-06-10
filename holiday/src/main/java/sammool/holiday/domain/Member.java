@@ -26,6 +26,7 @@ public class Member {
    
    @NotBlank
    private String name;//이름
+   
    private int leftover_days; //잔여 휴가 일 수
    private int points;//상점
 

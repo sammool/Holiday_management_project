@@ -1,4 +1,4 @@
-package sammool.holiday.web.login;
+package sammool.holiday.web.form;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

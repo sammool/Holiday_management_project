@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>정보 수정 폼</title>
+
+<style>
+    .container {
+    max-width: 560px;
+    }
+    .field-error {
+    border-color: #dc3545;
+    color: #dc3545;
+    }
+    </style>
+
+</head>
+
+<body>
+<h2>정보 수정</h2>
+<form th:action th:object="${form}" method="post" >
+  
+
+  <label for="degree">계급:</label>
+  <input type="text" id="degree" th:field="*{degree}" placeholder="계급을 입력하세요"><br>
+  
+  <label for="leftover_days">잔여 휴가 일 수:</label>
+  <input type="number" id="leftover_days" name="leftover_days" th:field="*{leftover_days}" placeholder="잔여 휴가 일 수를 입력하세요"><br>
+  
+  <label for="points">상점:</label>
+  <input type="number" id="points" name="points" th:field="*{points}" placeholder="상점을 입력하세요"><br><br>
+
+  <div>
+  <button type="submit">변경</button>
+  </div>
+  
+  <div>
+    <button 
+        th:onclick="|location.href='@{/members/{member_id}(member_id=${member.member_id})}'|"
+        type="button">취소</button>
+  </div>
+
+</form> 
+</body>
+</html>

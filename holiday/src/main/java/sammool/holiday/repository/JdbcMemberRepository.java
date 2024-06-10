@@ -66,9 +66,9 @@ public class JdbcMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> update(Member member){
-        String sql = "UPDATE member SET leftover_days = ?, points = ? where member_id = ?";
+        String sql = "UPDATE member SET degree = ?, leftover_days = ?, points = ? where member_id = ?";
 
-        template.update(sql,member.getLeftover_days(),member.getPoints(),member.getMember_id());
+        template.update(sql,member.getDegree(), member.getLeftover_days(),member.getPoints(),member.getMember_id());
         return Optional.of(member);
     }
 
