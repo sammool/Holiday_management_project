@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class EditForm {
+
+    private String member_id;
+
     @NotBlank
     private String degree;
     

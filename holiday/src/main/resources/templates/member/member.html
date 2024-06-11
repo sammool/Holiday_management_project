@@ -12,11 +12,17 @@
     <label for="member_id">군번</label>
     <input type="text" id="member_id" name="member_id" th:value = "${member.member_id}" readonly>
     </div>
+
+    <div>
+        <label for="name">계급</label>
+        <input type="text" id="degree" name="degree" th:value = "${member.degree}" readonly>
+    </div>
     
     <div>
     <label for="name">성명</label>
     <input type="text" id="name" name="name" th:value = "${member.name}" readonly>
     </div>
+    
     
     <div>
     <label for="leftover_days">잔여 휴가</label>
@@ -37,8 +43,8 @@
 
     <div>
         <button 
-        th:onclick="|location.href='@{/member/members}'|"
-        type="button">취소</button>
+        th:onclick="|location.href='@{/}'|"
+        type="button">돌아가기</button>
     </div>
 </body>
 </html>

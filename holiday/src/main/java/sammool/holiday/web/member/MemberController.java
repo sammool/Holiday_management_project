@@ -57,9 +57,7 @@ public class MemberController {
     }
 
     @GetMapping("/{member_id}/edit")
-    public String editForm(@PathVariable String member_id, Model model){
-        Member fineMember = memberRepository.findById(member_id).get();
-        model.addAttribute("member", fineMember);
+    public String editForm(@ModelAttribute("form") EditForm form){
         return "member/editForm";
     }
 
@@ -69,13 +67,13 @@ public class MemberController {
             log.info("errors = {}", bindingResult);
             return "member/editForm";
         }
+        Member findMember = memberRepository.findById(member_id).get();
 
-        Member updateMember = new Member();
-        updateMember.setDegree(form.getDegree());
-        updateMember.setLeftover_days(form.getLeftover_days());
-        updateMember.setPoints(form.getPoints());
+        findMember.setDegree(form.getDegree());
+        findMember.setLeftover_days(form.getLeftover_days());
+        findMember.setPoints(form.getPoints());
 
-        memberRepository.update(updateMember);
+        memberRepository.update(findMember);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
     }
     
