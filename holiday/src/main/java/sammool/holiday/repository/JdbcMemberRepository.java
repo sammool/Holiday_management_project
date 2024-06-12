@@ -5,15 +5,12 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import javax.swing.text.html.Option;
-
-import java.util.Map;
 import java.util.Optional;
 import java.util.List;
-import java.util.HashMap;
+
 
 import sammool.holiday.domain.Member;
-import sammool.holiday.repository.MemberRepository; 
+
 
 @Repository
 public class JdbcMemberRepository implements MemberRepository{
