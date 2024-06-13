@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+</head>
+<body>
+<div>
+<h2>홈 화면</h2>
+</div>
+
+<div>
+    <h4 th:text="|관리자 로그인: ${leader.name}|"></p>
+</div>
+
+<div>
+<button type="button" th:onclick="|location.href='@{/members}'|">
+병사 전체 정보
+</button>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">
+    로그아웃
+    </button>
+</div>
+
+
+
+<hr class="my-4">
+</div> <!-- /container -->
+</body>
+</html>

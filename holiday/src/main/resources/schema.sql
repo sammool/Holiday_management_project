@@ -11,5 +11,5 @@ CREATE TABLE IF NOT EXISTS leader(
     leader_id VARCHAR(30) PRIMARY KEY,
     password VARCHAR(30) NOT NULL,
     degree VARCHAR(5) NOT NULL,
-    name VARCHAR(10) NOT NULL,
-)
+    name VARCHAR(10) NOT NULL
+);

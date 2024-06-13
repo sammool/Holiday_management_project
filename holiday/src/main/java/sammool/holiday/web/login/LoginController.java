@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
 import sammool.holiday.domain.login.LoginService;
 import sammool.holiday.repository.MemberRepository;
@@ -50,6 +51,29 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
+
+    @GetMapping("/leader-login")
+    public String leaderLoginForm(@ModelAttribute("loginForm") LoginForm form){
+        return "login/loginForm";
+    }
+
+    @PostMapping("/leader-login")
+    public String leaderLogin(@Validated @ModelAttribute("loginForm") LoginForm form, 
+                                BindingResult bindingResult, HttpServletRequest request){
+
+        if(bindingResult.hasErrors()){
+            log.info("errors={}",bindingResult);
+            return "login/loginForm";
+        }
+
+        Leader loginLeader = loginService.leaderLogin(form.getMember_id(), form.getPassword());
+        log.info("loginLeader={}", loginLeader);
+
+        HttpSession session = request.getSession(true);
+        session.setAttribute(SessionConst.LOGIN_LEADER, loginLeader);
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
+    }
+    
 
     @PostMapping("/logout")
     public String logout(HttpServletRequest request){

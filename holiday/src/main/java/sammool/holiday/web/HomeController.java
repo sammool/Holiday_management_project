@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
 
 @Controller
@@ -20,4 +21,14 @@ public class HomeController {
         model.addAttribute("member", loginMember);
         return "home/loginHome";
     }
+
+    public String leaderHomeLogin(@SessionAttribute
+        (name = SessionConst.LOGIN_LEADER,required = false) Leader loginLeader, Model model){
+            
+            if(loginLeader == null)
+                return "home/home";
+                
+            model.addAttribute("leader", loginLeader);
+            return "home/leaderLoginHome";
+        }
 }

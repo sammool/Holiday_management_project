@@ -4,13 +4,16 @@ import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
+import sammool.holiday.repository.JdbcLeaderRepository;
 import sammool.holiday.repository.MemberRepository;
 
 @Component
 @RequiredArgsConstructor
 public class Testdata {
     private final MemberRepository memberRepository;
+    private final JdbcLeaderRepository leaderRepository;
 
     @PostConstruct
     public void init(){
@@ -21,5 +24,12 @@ public class Testdata {
         member.setPassword("sa2003");
 
         memberRepository.save(member);
+
+        Leader leader = new Leader();
+        leader.setLeader_id("23-11111111");
+        leader.setPassword("test");
+        leader.setDegree("병장");
+        leader.setName("이후");
+        leaderRepository.save(leader);
     }
 }
