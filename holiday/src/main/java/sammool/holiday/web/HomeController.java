@@ -12,23 +12,19 @@ import sammool.holiday.domain.Member;
 public class HomeController {
     @GetMapping("/")
     //세션을 생성하지 않으므로 세션을 찾아올 때 사용한다
-    public String homeLogin(@SessionAttribute
-        (name = SessionConst.LOGIN_MEMBER,required = false) Member loginMember, Model model){
-    
-        if(loginMember == null)
-            return "home/home";
+    public String homeLogin(@SessionAttribute(name = SessionConst.LOGIN_MEMBER,required = false) Member loginMember, 
+                            @SessionAttribute(name = SessionConst.LOGIN_LEADER,required = false) Leader loginLeader, Model model){
+        if(loginMember != null){
+            model.addAttribute("member", loginMember);
+            return "home/loginHome";
+        }
 
-        model.addAttribute("member", loginMember);
-        return "home/loginHome";
-    }
-
-    public String leaderHomeLogin(@SessionAttribute
-        (name = SessionConst.LOGIN_LEADER,required = false) Leader loginLeader, Model model){
-            
-            if(loginLeader == null)
-                return "home/home";
-                
+        else if(loginLeader != null){
             model.addAttribute("leader", loginLeader);
             return "home/leaderLoginHome";
         }
+        
+        return "home/home";
+   
+    }
 }

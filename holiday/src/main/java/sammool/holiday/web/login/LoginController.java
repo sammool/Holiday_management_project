@@ -79,7 +79,9 @@ public class LoginController {
     public String logout(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         if(session != null){
+            log.info("로그아웃 정보={}",session);
             session.invalidate();
+            log.info("로그아웃 되었습니다.");
         }
 
          return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
