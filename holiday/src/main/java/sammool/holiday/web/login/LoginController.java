@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
 import sammool.holiday.domain.login.LoginService;
-import sammool.holiday.repository.MemberRepository;
 import sammool.holiday.web.SessionConst;
 import sammool.holiday.web.form.LoginForm;
 
@@ -49,6 +48,8 @@ public class LoginController {
 
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+        log.info("멤버 세션 정보={}", session.getId());
+
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
 
@@ -67,10 +68,15 @@ public class LoginController {
         }
 
         Leader loginLeader = loginService.leaderLogin(form.getMember_id(), form.getPassword());
-        log.info("loginLeader={}", loginLeader);
+        if(loginLeader == null){
+            bindingResult.reject("loginFail", "군번 또는 비밀번호가 일치하지 않습니다.");
+            return "login/loginForm";
+        }
 
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_LEADER, loginLeader);
+        
+        log.info("loginLeader={}", loginLeader);    
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
     
