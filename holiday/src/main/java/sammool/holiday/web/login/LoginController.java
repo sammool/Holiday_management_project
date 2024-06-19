@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -31,6 +32,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult,
+                        @RequestParam(defaultValue = "/") String requestURI,
                         HttpServletRequest request){
         //글로벌오류
         if(bindingResult.hasErrors()){
@@ -50,7 +52,7 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         log.info("멤버 세션 정보={}", session.getId());
 
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev" + requestURI;
     }
 
     @GetMapping("/leader-login")
@@ -60,7 +62,8 @@ public class LoginController {
 
     @PostMapping("/leader-login")
     public String leaderLogin(@Validated @ModelAttribute("loginForm") LoginForm form, 
-                                BindingResult bindingResult, HttpServletRequest request){
+                                BindingResult bindingResult,  
+                                @RequestParam(defaultValue = "/") String redirectURI, HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
             log.info("errors={}",bindingResult);
@@ -77,7 +80,7 @@ public class LoginController {
         session.setAttribute(SessionConst.LOGIN_LEADER, loginLeader);
         
         log.info("loginLeader={}", loginLeader);    
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev" + redirectURI;
     }
     
 
