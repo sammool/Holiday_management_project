@@ -7,6 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import sammool.holiday.web.interceptor.LeaderInterceptor;
 import sammool.holiday.web.interceptor.LoginCheckInterceptor;
+import sammool.holiday.web.interceptor.MemberAccessInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer{
@@ -22,8 +23,10 @@ public class WebConfig implements WebMvcConfigurer{
                 .addPathPatterns("/**")
                 .excludePathPatterns("/", "/register", "/login", "/logout", "/leader-login", "/css/**", "/*.ico"); //홈, 로그인, 로그아웃 , 회원가입    
         
+        registry.addInterceptor(new MemberAccessInterceptor())
+                .order(3)
+                .addPathPatterns("/members/*");
         
-
     }
     
 }
