@@ -76,5 +76,10 @@ public class MemberController {
         memberRepository.update(findMember);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
     }
+
+    @GetMapping("/{member_id}/apply")
+    public String applyForm(@PathVariable String member_id){
+        return "member/applyForm";
+    }
     
 }

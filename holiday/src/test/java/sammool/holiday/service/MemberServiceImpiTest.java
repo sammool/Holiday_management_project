@@ -16,7 +16,7 @@ public class MemberServiceImpiTest {
    
 
    private JdbcMemberRepository memberRepository;
-   private MemberServiceImpl memberService;
+   private MemberService memberService;
 
    @BeforeEach
    void before(){
@@ -26,7 +26,7 @@ public class MemberServiceImpiTest {
     dataSource.setPassword(PASSWORD);
 
     memberRepository = new JdbcMemberRepository(dataSource);
-    memberService = new MemberServiceImpl(memberRepository);
+    memberService = new MemberService(memberRepository);
     memberRepository.createTable();
    }
 
