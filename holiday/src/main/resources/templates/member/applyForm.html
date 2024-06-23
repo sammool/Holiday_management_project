@@ -18,12 +18,11 @@
 
 <body>
 <h2>휴가 신청</h2>
-<form th:action  method="post" >
+<form th:action th:object="${member}" method="post" >
   
  
   <label for="days">신청할 휴가 일 수:</label>
-  <input type="number" id="leftover_days" name="leftover_days" th:field="*{leftover_days}" th:errorclass="field-error" placeholder="잔여 휴가 일 수를 입력하세요"><br>
-  <div class="field-error" th:errors="*{leftover_days}"/>
+  <input type="number" id="days" name="days" value="days"  placeholder="신청할 휴가 일 수를 입력하세요"><br>
 
   <div>
   <button type="submit">신청</button>
@@ -31,7 +30,7 @@
   
   <div>
     <button 
-        th:onclick="|location.href='@{/members/{member_id}(member_id=${form.member_id})}'|"
+        th:onclick="|location.href='@{/members/{member_id}(member_id=${member.member_id})}'|"
         type="button">취소</button>
   </div>
 

@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import javax.sql.DataSource;
 import java.util.Optional;
 import java.util.List;
@@ -17,9 +18,13 @@ public class JdbcMemberRepository implements MemberRepository{
 
     private final JdbcTemplate template;
 
+    private static final List<Member> applyMember = new ArrayList<>();
+
     public JdbcMemberRepository(DataSource dataSource){
         this.template = new JdbcTemplate(dataSource);
     }
+
+
 
     @Override
     public void createTable(){
@@ -67,6 +72,15 @@ public class JdbcMemberRepository implements MemberRepository{
 
         template.update(sql,member.getDegree(), member.getLeftover_days(),member.getPoints(),member.getMember_id());
         return Optional.of(member);
+    }
+
+    @Override
+    public List<Member> findApplyMember(){
+        return applyMember;
+    }
+    @Override
+    public void addApplyMember(Member member){
+        applyMember.add(member);
     }
 
     

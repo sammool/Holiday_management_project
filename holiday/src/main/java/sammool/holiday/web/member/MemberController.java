@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import org.springframework.validation.annotation.Validated;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.MemberRepository;
+import sammool.holiday.service.MemberService;
 import sammool.holiday.web.form.EditForm;
 
 @Slf4j
@@ -28,11 +31,12 @@ import sammool.holiday.web.form.EditForm;
 @RequestMapping("/members")
 public class MemberController {
 
-    @Autowired
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
-    public MemberController(JdbcMemberRepository memberRepository){
+    public MemberController(JdbcMemberRepository memberRepository, MemberService memberService){
         this.memberRepository = memberRepository;
+        this.memberService = memberService;
     }
 
     @GetMapping
@@ -78,8 +82,15 @@ public class MemberController {
     }
 
     @GetMapping("/{member_id}/apply")
-    public String applyForm(@PathVariable String member_id){
+    public String applyForm(@PathVariable String member_id, Model model){
+        Member findMember = memberRepository.findById(member_id).get();
+        model.addAttribute("member", findMember);
         return "member/applyForm";
     }
-    
+
+    @PostMapping("/{member_id}/apply")
+    public String apply(@PathVariable String member_id, @RequestParam(value="days") Integer days){
+        memberService.applyHoliday(member_id, days);
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+    }    
 }

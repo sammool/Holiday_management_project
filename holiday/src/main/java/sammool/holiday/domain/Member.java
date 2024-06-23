@@ -1,6 +1,4 @@
 package sammool.holiday.domain;
-
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -24,6 +22,7 @@ public class Member {
    
    private int leftover_days; //잔여 휴가 일 수
    private int points;//상점
+
 
    public Member(){
 
