@@ -38,4 +38,8 @@ public class MemberService {
             throw new IllegalArgumentException("휴가 일수가 남은 일수보다 많습니다.");
         }
     }
+
+    public void approveHoliday(String member_id){
+        
+    }
 }

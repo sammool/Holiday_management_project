@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LeaderInterceptor())
                 .order(1)
-                .addPathPatterns("/members"); //관리자 권한 페이지는 로그인 검증
+                .addPathPatterns("/leader/**"); //관리자 권한 페이지는 로그인 검증
 
         registry.addInterceptor(new LoginCheckInterceptor())
                 .order(2)
