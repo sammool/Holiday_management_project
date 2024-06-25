@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.RequiredArgsConstructor;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JdbcMemberRepository;
+import sammool.holiday.service.MemberService;
 
 @Controller
 @RequiredArgsConstructor
 public class LeaderController {
     private final JdbcMemberRepository memberRepository;
+    private final MemberService memberService;
 
     @GetMapping("leader/members/applyInfo")
     public String applyMembers(Model model){
@@ -27,7 +29,7 @@ public class LeaderController {
 
     @PostMapping("leader/members/applyInfo")
     public String approve(@ModelAttribute Member member){
-
+        memberService.approveHoliday(member.getMember_id());
         
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members";
     }
