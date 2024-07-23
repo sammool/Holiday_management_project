@@ -1,5 +1,6 @@
 package sammool.holiday.domain;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,8 @@ public class Holiday {
 
     private int HolidayDays;
 
-    private Date date;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
     private HolidayKind kind;

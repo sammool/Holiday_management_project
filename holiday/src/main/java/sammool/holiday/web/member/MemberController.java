@@ -81,16 +81,4 @@ public class MemberController {
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
     }
 
-    @GetMapping("/{member_id}/apply")
-    public String applyForm(@PathVariable String member_id, Model model){
-        Member findMember = memberRepository.findById(member_id).get();
-        model.addAttribute("member", findMember);
-        return "member/applyForm";
-    }
-
-    @PostMapping("/{member_id}/apply")
-    public String apply(@PathVariable String member_id, @RequestParam(value="days") Integer days){
-        memberService.applyHoliday(member_id, days);
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
-    }    
 }
