@@ -11,7 +11,7 @@ import sammool.holiday.domain.Leader;
 import javax.sql.DataSource;
 import java.util.Optional;
 
-@Repository
+//@Repository
 public class JdbcLeaderRepository {
     private final JdbcTemplate template;
 

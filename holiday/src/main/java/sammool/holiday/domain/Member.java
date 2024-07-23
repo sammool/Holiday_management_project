@@ -1,32 +1,35 @@
 package sammool.holiday.domain;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+
+@Entity
+@Getter @Setter
 public class Member {
    
-   @NotEmpty
+   @Id @GeneratedValue
+   @Column(name = "member_id")
+   private String member_id; //군번,주요키
+
+   private String degree;
+
+   private String name;
+
    private String password;
 
-   @NotEmpty
-   private String member_id; //군번,주요키
-   
-   @NotBlank
-   private String degree;//계급
-   
-   @NotBlank
-   private String name;//이름
-   
    private int leftover_days; //잔여 휴가 일 수
+   
    private int points;//상점
-
-
-   public Member(){
-
-   }
-
+      
+   @OneToMany(mappedBy = "member")
+   private List<Holiday> holiday = new ArrayList<>();
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import sammool.holiday.domain.Member;
 
 
-@Repository
+//@Repository
 public class JdbcMemberRepository implements MemberRepository{
 
     private final JdbcTemplate template;
