@@ -66,22 +66,22 @@ public class JdbcMemberRepository implements MemberRepository{
         return template.query(sql, memberRowMapper());
     }
 
-    @Override
-    public Optional<Member> update(Member member){
-        String sql = "UPDATE member SET degree = ?, leftover_days = ?, points = ? where member_id = ?";
+    // @Override
+    // public Optional<Member> update(Member member){
+    //     String sql = "UPDATE member SET degree = ?, leftover_days = ?, points = ? where member_id = ?";
 
-        template.update(sql,member.getDegree(), member.getLeftover_days(),member.getPoints(),member.getMember_id());
-        return Optional.of(member);
-    }
+    //     template.update(sql,member.getDegree(), member.getLeftover_days(),member.getPoints(),member.getMember_id());
+    //     return Optional.of(member);
+    // }
 
-    @Override
-    public List<Member> findApplyMember(){
-        return applyMember;
-    }
-    @Override
-    public void addApplyMember(Member member){
-        applyMember.add(member);
-    }
+    // @Override
+    // public List<Member> findApplyMember(){
+    //     return applyMember;
+    // }
+    // @Override
+    // public void addApplyMember(Member member){
+    //     applyMember.add(member);
+    // }
 
     
 

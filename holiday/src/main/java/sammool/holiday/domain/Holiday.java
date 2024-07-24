@@ -50,7 +50,10 @@ public class Holiday {
     }
 
     public static Holiday createHoliday(Member member, Leader leader){
-        
+        Holiday holiday = new Holiday();
+        holiday.setMember(member);
+        holiday.setLeader(leader);
+        return holiday;
     }
 
 }

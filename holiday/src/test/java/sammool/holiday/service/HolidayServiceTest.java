@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.RequiredArgsConstructor;
 import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.HolidayKind;
 import sammool.holiday.domain.Leader;
@@ -16,19 +15,29 @@ import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JpaLeaderRepository;
 import sammool.holiday.repository.JpaMemberRepository;
 
-
+@SpringBootTest
+@Transactional
 public class HolidayServiceTest {
     
-    @Autowired HolidayService holidayService;
-    @Autowired JpaMemberRepository memberRepository;
-    @Autowired JpaLeaderRepository leaderRepository;
+    @Autowired
+     HolidayService holidayService;
+
+    @Autowired
+     JpaMemberRepository memberRepository;
+
+    @Autowired
+     JpaLeaderRepository leaderRepository;
 
     @Test
     void apply() {
         //given
         Member member = new Member();
         member.setName("sammool");
+        member.setMember_id("23-76030904");
         Leader leader = new Leader();
+        leader.setLeader_id("23-71111111");
+
+
         memberRepository.save(member);
         leaderRepository.save(leader);
 

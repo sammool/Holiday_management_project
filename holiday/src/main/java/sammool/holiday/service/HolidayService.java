@@ -3,7 +3,6 @@ package sammool.holiday.service;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,15 +29,16 @@ public class HolidayService {
                     HolidayKind kind, LocalDate startDate, LocalDate endDate){
 
         Optional<Member> member = memberRepository.findOne(memberId);
-        Leader leader = leaderRepository.findLeader(leaderId);
+        Optional<Leader> leader = leaderRepository.findOne(leaderId);
         
         if (member.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Member not found with ID: " + memberId);
         }
 
         Member findMember = member.get();
+        Leader findLeader = leader.get();
     
-        Holiday holiday = Holiday.createHoliday(findMember, leader);
+        Holiday holiday = Holiday.createHoliday(findMember, findLeader);
 
         holiday.setHolidayDays(days);
         holiday.setKind(kind);

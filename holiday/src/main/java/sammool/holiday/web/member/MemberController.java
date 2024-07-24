@@ -22,6 +22,7 @@ import org.springframework.validation.annotation.Validated;
 
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JdbcMemberRepository;
+import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.repository.MemberRepository;
 import sammool.holiday.service.MemberService;
 import sammool.holiday.web.form.EditForm;
@@ -31,10 +32,10 @@ import sammool.holiday.web.form.EditForm;
 @RequestMapping("/members")
 public class MemberController {
 
-    private final MemberRepository memberRepository;
+    private final JpaMemberRepository memberRepository;
     private final MemberService memberService;
 
-    public MemberController(JdbcMemberRepository memberRepository, MemberService memberService){
+    public MemberController(JpaMemberRepository memberRepository, MemberService memberService){
         this.memberRepository = memberRepository;
         this.memberService = memberService;
     }
@@ -49,7 +50,7 @@ public class MemberController {
 
     @GetMapping("/{member_id}")
     public String member(Model model, @PathVariable String member_id){
-        Optional<Member> optionalMember = memberRepository.findById(member_id);
+        Optional<Member> optionalMember = memberRepository.findOne(member_id);
         if(optionalMember.isPresent()){
             Member member = optionalMember.get();
             model.addAttribute("member", member);
@@ -65,20 +66,20 @@ public class MemberController {
         return "member/editForm";
     }
 
-    @PostMapping("/{member_id}/edit")
-    public String edit(@PathVariable String member_id, @Validated @ModelAttribute("form") EditForm form, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            log.info("errors = {}", bindingResult);
-            return "member/editForm";
-        }
-        Member findMember = memberRepository.findById(member_id).get();
+    // @PostMapping("/{member_id}/edit")
+    // public String edit(@PathVariable String member_id, @Validated @ModelAttribute("form") EditForm form, BindingResult bindingResult){
+    //     if(bindingResult.hasErrors()){
+    //         log.info("errors = {}", bindingResult);
+    //         return "member/editForm";
+    //     }
+    //     Member findMember = memberRepository.findById(member_id).get();
 
-        findMember.setDegree(form.getDegree());
-        findMember.setLeftover_days(form.getLeftover_days());
-        findMember.setPoints(form.getPoints());
+    //     findMember.setDegree(form.getDegree());
+    //     findMember.setLeftover_days(form.getLeftover_days());
+    //     findMember.setPoints(form.getPoints());
 
-        memberRepository.update(findMember);
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
-    }
+    //     memberRepository.update(findMember);
+    //     return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+    // }
 
 }

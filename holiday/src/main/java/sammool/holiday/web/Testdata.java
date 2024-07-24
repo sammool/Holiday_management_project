@@ -1,35 +1,35 @@
-package sammool.holiday.web;
+// package sammool.holiday.web;
 
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
-import sammool.holiday.domain.Leader;
-import sammool.holiday.domain.Member;
-import sammool.holiday.repository.JdbcLeaderRepository;
-import sammool.holiday.repository.MemberRepository;
+// import jakarta.annotation.PostConstruct;
+// import lombok.RequiredArgsConstructor;
+// import sammool.holiday.domain.Leader;
+// import sammool.holiday.domain.Member;
+// import sammool.holiday.repository.JpaLeaderRepository;
+// import sammool.holiday.repository.JpaMemberRepository;
 
-@Component
-@RequiredArgsConstructor
-public class Testdata {
-    private final MemberRepository memberRepository;
-    private final JdbcLeaderRepository leaderRepository;
+// @Component
+// @RequiredArgsConstructor
+// public class Testdata {
+//     private final JpaMemberRepository memberRepository;
+//     private final JpaLeaderRepository leaderRepository;
 
-    @PostConstruct
-    public void init(){
-        Member member = new Member();
-        member.setMember_id("23-00000000");
-        member.setDegree("상병");
-        member.setName("박찬규");
-        member.setPassword("sa2003");
+//     @PostConstruct
+//     public void init(){
+//         Member member = new Member();
+//         member.setMember_id("23-00000000");
+//         member.setDegree("상병");
+//         member.setName("박찬규");
+//         member.setPassword("sa2003");
 
-        memberRepository.save(member);
+//         memberRepository.save(member);
 
-        Leader leader = new Leader();
-        leader.setLeader_id("23-11111111");
-        leader.setPassword("test");
-        leader.setDegree("병장");
-        leader.setName("이후");
-        leaderRepository.save(leader);
-    }
-}
+//         Leader leader = new Leader();
+//         leader.setLeader_id("23-11111111");
+//         leader.setPassword("test");
+//         leader.setDegree("병장");
+//         leader.setName("이후");
+//         leaderRepository.save(leader);
+//     }
+// }

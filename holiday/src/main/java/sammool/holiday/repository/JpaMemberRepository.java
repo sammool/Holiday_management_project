@@ -13,10 +13,11 @@ import sammool.holiday.domain.Member;
 public class JpaMemberRepository {
     
     @PersistenceContext
-    private EntityManager em;
+     EntityManager em;
 
-    public void save(Member member){
+    public String save(Member member){
         em.persist(member);
+        return member.getMember_id();
     }
 
     public Optional<Member> findOne(String id){

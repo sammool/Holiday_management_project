@@ -1,5 +1,7 @@
 package sammool.holiday.repository;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
@@ -10,13 +12,14 @@ import sammool.holiday.domain.Leader;
 public class JpaLeaderRepository {
     
     @PersistenceContext
-    private EntityManager em;
+     EntityManager em;
 
     public void save(Leader leader){
         em.persist(leader);
     }
 
-    public Leader findLeader(String leaderId){
-        return em.find(Leader.class, leaderId);
+    public Optional<Leader> findOne(String leaderId){
+       Leader leader = em.find(Leader.class, leaderId);
+       return Optional.of(leader);
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter @Setter
 public class Member {
    
-   @Id @GeneratedValue
+   @Id
    @Column(name = "member_id")
    private String member_id; //군번,주요키
 
@@ -29,7 +30,7 @@ public class Member {
    
    private int points;//상점
       
-   @OneToMany(mappedBy = "member")
+   @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
    private List<Holiday> holiday = new ArrayList<>();
 
 }
