@@ -1,4 +1,4 @@
-package sammool.holiday.domain.login;
+package sammool.holiday.service;
 
 import java.util.Optional;
 

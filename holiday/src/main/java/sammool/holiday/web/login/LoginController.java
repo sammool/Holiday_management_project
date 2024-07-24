@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
-import sammool.holiday.domain.login.LoginService;
+import sammool.holiday.service.LoginService;
 import sammool.holiday.web.SessionConst;
 import sammool.holiday.web.form.LoginForm;
 

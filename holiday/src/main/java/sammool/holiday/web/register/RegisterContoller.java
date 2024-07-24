@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.repository.MemberRepository;
+import sammool.holiday.service.MemberService;
+
 import java.util.Optional;
 
 @Slf4j
@@ -21,16 +23,17 @@ import java.util.Optional;
 public class RegisterContoller {
 
     private final JpaMemberRepository memberRepository;
+    private final MemberService memberService;
 
     @GetMapping("/register")
-    public String registerForm(@ModelAttribute("member") Member member){
+    public String registerForm(@ModelAttribute("form") RegisterForm form){
         return "register/registerForm";
     }
 
     @PostMapping("/register")
-    public String register(@Validated @ModelAttribute("member") Member member, BindingResult bindingResult){
+    public String register(@Validated @ModelAttribute("form") RegisterForm form, BindingResult bindingResult){
         
-        Optional<Member> findMember = memberRepository.findOne(member.getMember_id());
+        Optional<Member> findMember = memberRepository.findOne(form.getMember_id());
         if(findMember.isPresent()){
            //application.yml은 errors,messages 등록 X
             bindingResult.rejectValue("member_id",null,null,"중복된 군번입니다. 다시 입력해주세요.");
@@ -41,8 +44,10 @@ public class RegisterContoller {
             return "register/registerForm";
         }
 
-        memberRepository.save(member);
-        log.info("회원가입 완료 member={}",member);
+        memberService.register(form.getMember_id(), form.getDegree(), form.getName(), form.getPassword());
+        
+
+        log.info("회원가입 완료 member={}",form);
         return "home/home";
     }
 }

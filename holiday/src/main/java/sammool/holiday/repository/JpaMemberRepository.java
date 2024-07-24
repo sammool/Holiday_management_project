@@ -22,7 +22,7 @@ public class JpaMemberRepository {
 
     public Optional<Member> findOne(String id){
         Member member = em.find(Member.class, id);
-        return Optional.of(member);
+        return Optional.ofNullable(member);
     }
 
     public List<Member> findAll(){

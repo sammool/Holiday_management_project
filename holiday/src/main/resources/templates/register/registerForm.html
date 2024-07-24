@@ -18,7 +18,7 @@
     <h2>회원가입</h2>
     </div>
 
-    <form th:action th:object="${member}" method="post">
+    <form th:action th:object="${form}" method="post">
         <div>
             <label for="member_id">군번</label>
             <input type="text" id="member_id" th:field="*{member_id}" th:errorclass="field-error" placeholder="- 포함 군번을 입력해주세요.">
