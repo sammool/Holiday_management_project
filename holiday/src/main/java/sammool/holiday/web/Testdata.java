@@ -13,18 +13,19 @@ import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JpaLeaderRepository;
 import sammool.holiday.repository.JpaMemberRepository;
+import sammool.holiday.service.LeaderService;
+import sammool.holiday.service.MemberService;
 
 @Slf4j
 @Component
-
 public class Testdata {
-    private final JpaMemberRepository memberRepository;
-    private final JpaLeaderRepository leaderRepository;
+    private final MemberService memberService;
+    private final LeaderService leaderService;
 
     @Autowired
-    public Testdata(JpaMemberRepository memberRepository, JpaLeaderRepository leaderRepository) {
-        this.memberRepository = memberRepository;
-        this.leaderRepository = leaderRepository;
+    public Testdata(MemberService memberService, LeaderService leaderService) {
+        this.memberService = memberService;
+        this.leaderService = leaderService;
     }
 
     @PostConstruct
@@ -36,14 +37,14 @@ public class Testdata {
         member.setName("박찬규");
         member.setPassword("sa2003");
 
-        memberRepository.save(member);
+        memberService.save(member);
 
         Leader leader = new Leader();
         leader.setLeader_id("23-11111111");
         leader.setPassword("test");
         leader.setDegree("병장");
         leader.setName("이후");
-        leaderRepository.save(leader);
+        leaderService.save(leader);
         log.info("@PostContruct");
     }
 }

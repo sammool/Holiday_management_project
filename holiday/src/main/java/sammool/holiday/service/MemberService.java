@@ -18,6 +18,10 @@ public class MemberService {
    
     private final JpaMemberRepository memberRepository;
 
+    public void save(Member member){
+        memberRepository.save(member);
+    }
+
     public void register(String memberId, String degree, String name, String password){
         Member member = new Member();
         member.setMember_id(memberId);

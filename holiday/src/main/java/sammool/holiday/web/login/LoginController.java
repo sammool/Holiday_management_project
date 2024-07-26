@@ -55,6 +55,7 @@ public class LoginController {
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev" + requestURI;
     }
 
+    //리더 로그인
     @GetMapping("/leader-login")
     public String leaderLoginForm(@ModelAttribute("loginForm") LoginForm form){
         return "login/loginForm";
@@ -79,7 +80,7 @@ public class LoginController {
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_LEADER, loginLeader);
         
-        log.info("loginLeader={}", loginLeader);    
+        log.info("리더 세션 정보={}", session.getId());    
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev" + redirectURI;
     }
     

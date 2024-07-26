@@ -18,11 +18,15 @@
 
 <body>
 <h2>휴가 신청</h2>
-<form th:action th:object="${member}" method="post" >
+<form th:action th:object="${form}" method="post" >
   
+  <label for="holidayKind">휴가 종류:</label>
+  <select>
+  
+  </select>
  
   <label for="days">신청할 휴가 일 수:</label>
-  <input type="number" id="days" name="days" value="days"  placeholder="신청할 휴가 일 수를 입력하세요"><br>
+  <input type="number" th:value="days" placeholder="신청할 휴가 일 수를 입력하세요"><br>
 
   <div>
   <button type="submit">신청</button>
