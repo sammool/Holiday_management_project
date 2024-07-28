@@ -66,20 +66,15 @@ public class MemberController {
         return "member/editForm";
     }
 
-    // @PostMapping("/{member_id}/edit")
-    // public String edit(@PathVariable String member_id, @Validated @ModelAttribute("form") EditForm form, BindingResult bindingResult){
-    //     if(bindingResult.hasErrors()){
-    //         log.info("errors = {}", bindingResult);
-    //         return "member/editForm";
-    //     }
-    //     Member findMember = memberRepository.findById(member_id).get();
+    @PostMapping("/{member_id}/edit")
+    public String edit(@PathVariable String member_id, @Validated @ModelAttribute("form") EditForm form, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            log.info("errors = {}", bindingResult);
+            return "member/editForm";
+        }
 
-    //     findMember.setDegree(form.getDegree());
-    //     findMember.setLeftover_days(form.getLeftover_days());
-    //     findMember.setPoints(form.getPoints());
-
-    //     memberRepository.update(findMember);
-    //     return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
-    // }
+        memberService.updateMember(member_id,form);
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+    }
 
 }

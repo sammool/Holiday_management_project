@@ -1,17 +1,14 @@
 package sammool.holiday.web.form;
 
 import java.time.LocalDate;
+import lombok.Data;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import sammool.holiday.domain.HolidayKind;
-import sammool.holiday.domain.HolidayStatus;
-
+@Data
 public class HolidayApplyForm {
     
     private String holidayKind;
 
-    private int HolidayDays;
+    private int holidayDays;
 
     private LocalDate startDate;
 

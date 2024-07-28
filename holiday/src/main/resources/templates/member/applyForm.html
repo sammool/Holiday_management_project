@@ -21,12 +21,20 @@
 <form th:action th:object="${form}" method="post" >
   
   <label for="holidayKind">휴가 종류:</label>
-  <select>
-  
+  <select id="holidayKind">
+        <option value="BASIC">연가</option>
+        <option value="PRIZE">포상</option>
+        <option value="EFFORT">위로</option>
   </select>
  
-  <label for="days">신청할 휴가 일 수:</label>
-  <input type="number" th:value="days" placeholder="신청할 휴가 일 수를 입력하세요"><br>
+  <label for="holidayDays">신청할 휴가 일 수:</label>
+  <input type="number" id="holidayDays" th:value="${form.holidayDays}" placeholder="신청할 휴가 일 수를 입력하세요">
+
+  <label for="startDate">시작 날짜:</label>
+  <input type="date" id="startDate" name="startDate" th:value="${form.startDate}">
+
+  <label for="endDate">종료 날짜:</label>
+  <input type="date" id="endDate" name="endDate" th:value="${form.endDate}">
 
   <div>
   <button type="submit">신청</button>
