@@ -1,18 +1,13 @@
 package sammool.holiday.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import sammool.holiday.HolidayApplication;
 import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
-import sammool.holiday.repository.JpaLeaderRepository;
-import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.service.LeaderService;
 import sammool.holiday.service.MemberService;
 

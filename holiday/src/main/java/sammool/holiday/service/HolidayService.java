@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.HolidayKind;
 import sammool.holiday.domain.Leader;
@@ -17,6 +18,7 @@ import sammool.holiday.repository.JpaLeaderRepository;
 import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.web.form.HolidayApplyForm;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor

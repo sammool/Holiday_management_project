@@ -7,12 +7,12 @@ public enum HolidayKind {
 
     public static HolidayKind fromString(String value){
         switch (value) {
-            case "연가":
+            case "BASIC":
                 return BASIC;
         
-            case "포상":
+            case "PRIZE":
                 return PRIZE;
-            case "위로":
+            case "EFFORT":
                 return EFFORT;
             default:
                 throw new IllegalArgumentException("Not Appropriate Value");
