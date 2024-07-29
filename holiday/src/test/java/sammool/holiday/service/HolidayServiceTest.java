@@ -43,7 +43,7 @@ public class HolidayServiceTest {
 
         HolidayApplyForm form = new HolidayApplyForm();
         form.setHolidayDays(4);
-        form.setHolidayKind("연가");
+        form.setHolidayKind("PRIZE");
         form.setStartDate( LocalDate.of(2024, 7, 22));
         form.setEndDate(LocalDate.of(2024, 7, 25));
 

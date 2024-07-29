@@ -14,6 +14,7 @@ import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.HolidayKind;
 import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.Member;
+import sammool.holiday.repository.JpaHolidayRepository;
 import sammool.holiday.repository.JpaLeaderRepository;
 import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.web.form.HolidayApplyForm;
@@ -26,6 +27,7 @@ public class HolidayService {
     
     private final JpaMemberRepository memberRepository;
     private final JpaLeaderRepository leaderRepository;
+    private final JpaHolidayRepository holidayRepository;
 
     @Transactional
     public Holiday applyHoliday(String memberId, String leaderId, HolidayApplyForm form){
@@ -48,6 +50,13 @@ public class HolidayService {
         holiday.setEndDate(form.getEndDate());
 
         findMember.setLeftover_days(findMember.getLeftover_days()-form.getHolidayDays());
+
+        holidayRepository.save(holiday);
         return holiday;
+    }
+
+    @Transactional
+    public void save(Holiday holiday){
+        holidayRepository.save(holiday);
     }
 }

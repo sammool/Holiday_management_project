@@ -28,7 +28,7 @@
   </select>
  
   <label for="holidayDays">신청할 휴가 일 수:</label>
-  <input type="number" id="holidayDays" th:value="${form.holidayDays}" placeholder="신청할 휴가 일 수를 입력하세요">
+  <input type="number" id="holidayDays" name="holidayDays" th:value="${form.holidayDays}" placeholder="신청할 휴가 일 수를 입력하세요">
 
   <label for="startDate">시작 날짜:</label>
   <input type="date" id="startDate" name="startDate" th:value="${form.startDate}">
