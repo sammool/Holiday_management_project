@@ -1,9 +1,18 @@
 package sammool.holiday.domain;
 
+import lombok.Getter;
+
 public enum HolidayKind {
-    BASIC,
-    PRIZE,
-    EFFORT;
+    BASIC("연가"),
+    PRIZE("포상"),
+    EFFORT("위로");
+
+    @Getter
+    private String description;
+
+    HolidayKind(String description){
+        this.description = description;
+    }
 
     public static HolidayKind fromString(String value){
         switch (value) {

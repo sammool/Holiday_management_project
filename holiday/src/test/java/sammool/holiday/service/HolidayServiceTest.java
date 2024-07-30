@@ -1,6 +1,7 @@
 package sammool.holiday.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.HolidayKind;
 import sammool.holiday.domain.Leader;
+import sammool.holiday.domain.LeaderConst;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JpaLeaderRepository;
 import sammool.holiday.repository.JpaMemberRepository;
@@ -34,18 +36,11 @@ public class HolidayServiceTest {
     @Test
     void apply() {
         //given
-        Member member = new Member();
-        member.setName("sammool");
-        member.setMember_id("23-76030904");
-        member.setLeftover_days(10);
-        Leader leader = new Leader();
-        leader.setLeader_id("23-71111111");
+        Member member = setMember("23-00000000");
+        Leader leader = setLeader();
 
         HolidayApplyForm form = new HolidayApplyForm();
-        form.setHolidayDays(4);
-        form.setHolidayKind("PRIZE");
-        form.setStartDate( LocalDate.of(2024, 7, 22));
-        form.setEndDate(LocalDate.of(2024, 7, 25));
+        setHolidayForm(form);
 
         memberRepository.save(member);
         leaderRepository.save(leader);
@@ -56,5 +51,46 @@ public class HolidayServiceTest {
         //then
         Assertions.assertThat(holiday.getMember().getName()).isEqualTo("sammool");
         Assertions.assertThat(member.getLeftover_days()).isEqualTo(6);
+        Assertions.assertThat(member.getHoliday().get(0)).isEqualTo(holiday);
+    }
+
+    @Test
+    void getHoliday(){
+        Member member1 = setMember("23-22222222");
+        Member member2 = setMember("23-12121212");
+        Leader leader = setLeader();
+
+        HolidayApplyForm form = new HolidayApplyForm();
+        setHolidayForm(form);
+
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        holidayService.applyHoliday(member1.getMember_id(), LeaderConst.leaderId,form);
+        holidayService.applyHoliday(member2.getMember_id(), LeaderConst.leaderId,form);
+
+        List<Holiday> holidays = leaderRepository.findHolidays();
+        Assertions.assertThat(holidays.size()).isEqualTo(2);
+
+    }
+
+    public void setHolidayForm(HolidayApplyForm form){
+        form.setHolidayDays(4);
+        form.setHolidayKind("PRIZE");
+        form.setStartDate( LocalDate.of(2024, 7, 22));
+        form.setEndDate(LocalDate.of(2024, 7, 25));
+    }
+
+    public Member setMember(String memberId){
+        Member member = new Member();
+        member.setName("sammool");
+        member.setMember_id(memberId);
+        member.setLeftover_days(10);
+        return member;
+    }
+    public Leader setLeader(){
+        Leader leader = new Leader();
+        leader.setLeader_id("23-11111111");
+        return leader;
     }
 }
