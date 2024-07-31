@@ -28,7 +28,7 @@ public class HolidayContoller {
     private final LeaderService leaderService;
 
     //휴가 신청 폼
-    @GetMapping("members/{memberId}/apply")
+    @GetMapping("/members/{memberId}/apply")
     public String applyForm(@PathVariable("memberId") String memberId, 
                             @ModelAttribute("form") HolidayApplyForm form, Model model){
             
@@ -38,7 +38,7 @@ public class HolidayContoller {
             return "member/applyForm";
     }
 
-    @PostMapping("members/{memberId}/apply")
+    @PostMapping("/members/{memberId}/apply")
     public String apply(@PathVariable("memberId") String memberId, 
                         @ModelAttribute("form") HolidayApplyForm form){
             
@@ -48,17 +48,23 @@ public class HolidayContoller {
     }
 
     //리더의 휴가 확인
-    @GetMapping("leader/holidayList")
+    @GetMapping("/leader/holidayList")
     public String holidayList(Model model){
         List<Holiday> holidays = leaderService.findHolidays();
         model.addAttribute("holidays", holidays);
         return "leader/holidayList";
     }
 
-    @PostMapping("leader/holidayList/{holidayId}/approve")
-    public String appoveHoliday(@PathVariable("holidayId") Long holidayId){
-        holidayService.approve(holidayService.findHoliday(holidayId));
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
+    @PostMapping("/leader/holidayList/{holidayId}/approve")
+    public String approveHoliday(@PathVariable("holidayId") Long holidayId){
+        log.info("메서드 호출");
+        Holiday holiday = holidayService.findHoliday(holidayId);
+        
+        log.info("승인 전 status:{}", holiday.getStatus());
+        holidayService.approve(holiday);
+        log.info("승인 후:{}", holiday.getStatus());
+        //holidayService.approve(holidayService.findHoliday(holidayId));
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
     }
 
 
