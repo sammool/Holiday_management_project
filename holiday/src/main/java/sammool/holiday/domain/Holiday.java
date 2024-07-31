@@ -67,6 +67,7 @@ public class Holiday {
     //휴가 취소
     public void cancle(){
         this.setStatus(HolidayStatus.CANCLE);
+        this.member.setLeftover_days(member.getLeftover_days() + HolidayDays);
     }
 
 }

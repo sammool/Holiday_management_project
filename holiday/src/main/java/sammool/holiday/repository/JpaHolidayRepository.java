@@ -14,4 +14,9 @@ public class JpaHolidayRepository {
     public void save(Holiday holiday){
         em.persist(holiday);
     }
+
+    public Holiday findHoliday(Long id){
+        Holiday holiday = em.find(Holiday.class, id);
+        return holiday;
+    }
 }

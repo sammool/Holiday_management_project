@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.HolidayKind;
+import sammool.holiday.domain.HolidayStatus;
 import sammool.holiday.domain.Leader;
 import sammool.holiday.domain.LeaderConst;
 import sammool.holiday.domain.Member;
@@ -72,6 +73,23 @@ public class HolidayServiceTest {
         List<Holiday> holidays = leaderRepository.findHolidays();
         Assertions.assertThat(holidays.size()).isEqualTo(2);
 
+    }
+
+    @Test
+    void approve(){
+        Member member = setMember("23-00000000");
+        Leader leader = setLeader();
+
+        HolidayApplyForm form = new HolidayApplyForm();
+        setHolidayForm(form);
+
+        memberRepository.save(member);
+        leaderRepository.save(leader);
+
+        //when
+        Holiday holiday = holidayService.applyHoliday(member.getMember_id(), leader.getLeader_id(),form);
+        holidayService.approve(holiday);
+        Assertions.assertThat(holiday.getStatus()).isEqualTo(HolidayStatus.APPROVE);
     }
 
     public void setHolidayForm(HolidayApplyForm form){

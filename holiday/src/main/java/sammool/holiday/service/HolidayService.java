@@ -30,6 +30,15 @@ public class HolidayService {
     private final JpaHolidayRepository holidayRepository;
 
     @Transactional
+    public void save(Holiday holiday){
+        holidayRepository.save(holiday);
+    }
+
+    public Holiday findHoliday(Long holidayId){
+        return holidayRepository.findHoliday(holidayId);
+    }
+
+    @Transactional
     public Holiday applyHoliday(String memberId, String leaderId, HolidayApplyForm form){
 
         Optional<Member> member = memberRepository.findOne(memberId);
@@ -55,8 +64,15 @@ public class HolidayService {
         return holiday;
     }
 
-    @Transactional
-    public void save(Holiday holiday){
-        holidayRepository.save(holiday);
+    public void approve(Holiday holiday){
+        holiday.approve();
     }
+
+    public void cancle(Holiday holiday){
+        holiday.cancle();
+    }
+
+    
+
+   
 }

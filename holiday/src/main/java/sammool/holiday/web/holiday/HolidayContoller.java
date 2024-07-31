@@ -55,5 +55,11 @@ public class HolidayContoller {
         return "leader/holidayList";
     }
 
+    @PostMapping("leader/holidayList/{holidayId}/approve")
+    public String appoveHoliday(@PathVariable("holidayId") Long holidayId){
+        holidayService.approve(holidayService.findHoliday(holidayId));
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
+    }
+
 
 }
