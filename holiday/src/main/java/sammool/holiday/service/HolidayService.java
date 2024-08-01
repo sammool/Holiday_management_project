@@ -64,12 +64,20 @@ public class HolidayService {
         return holiday;
     }
 
-    public void approve(Holiday holiday){
+    @Transactional
+    public void approve(Long holidayId){
+        Holiday holiday = holidayRepository.findHoliday(holidayId);
+        log.info("approve 실행 전={}", holiday.getStatus());
         holiday.approve();
+        log.info("approve 실행 후={}", holiday.getStatus());
     }
 
-    public void cancle(Holiday holiday){
+    @Transactional
+    public void cancle(Long holidayId){
+        Holiday holiday = holidayRepository.findHoliday(holidayId);
+        log.info("cancel 실행 전={}", holiday.getStatus());
         holiday.cancle();
+        log.info("cancel 실행 gn={}", holiday.getStatus());
     }
 
     

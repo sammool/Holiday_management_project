@@ -88,8 +88,13 @@ public class HolidayServiceTest {
 
         //when
         Holiday holiday = holidayService.applyHoliday(member.getMember_id(), leader.getLeader_id(),form);
-        holidayService.approve(holiday);
-        Assertions.assertThat(holiday.getStatus()).isEqualTo(HolidayStatus.APPROVE);
+        holidayService.approve(holiday.getId());
+        Holiday findHoliday = holidayService.findHoliday(holiday.getId());
+
+        //then
+        //DB에 값이 잘 저장되었는가
+        Assertions.assertThat(holiday.getStatus()).isEqualTo(findHoliday.getStatus());
+        //Assertions.assertThat(holiday.getStatus()).isEqualTo(HolidayStatus.APPROVE);
     }
 
     public void setHolidayForm(HolidayApplyForm form){

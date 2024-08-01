@@ -57,13 +57,13 @@ public class HolidayContoller {
 
     @PostMapping("/leader/holidayList/{holidayId}/approve")
     public String approveHoliday(@PathVariable("holidayId") Long holidayId){
-        log.info("메서드 호출");
-        Holiday holiday = holidayService.findHoliday(holidayId);
-        
-        log.info("승인 전 status:{}", holiday.getStatus());
-        holidayService.approve(holiday);
-        log.info("승인 후:{}", holiday.getStatus());
-        //holidayService.approve(holidayService.findHoliday(holidayId));
+        holidayService.approve(holidayId);
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
+    }
+
+    @PostMapping("/leader/holidayList/{holidayId}/cancel")
+    public String cancelHoliday(@PathVariable("holidayId") Long holidayId){
+        holidayService.cancle(holidayId);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
     }
 

@@ -55,6 +55,14 @@
         form.submit();
         alert("approve 함수 호출됨! ID: " + id);
     }
+
+    function cancel(id){
+        var form = document.createElement("form");
+        form.setAttribute("method","post");
+        form.setAttribute("action","/leader/holidayList/" + id + "/cancel");
+        document.body.appendChild(form);
+        form.submit();
+    }
 </script>
 
 </html>
