@@ -12,7 +12,6 @@ import sammool.holiday.repository.MemberRepository;
 @RequiredArgsConstructor
 public class HolidayApplication {
 
-	
 	public static void main(String[] args) {
 		SpringApplication.run(HolidayApplication.class, args);
 

@@ -48,13 +48,12 @@
 
 <script>
     function approve(id){
-        alert("approve 함수 호출됨! ID: " + id);
         var form = document.createElement("form");
         form.setAttribute("method","post");
         form.setAttribute("action", "/leader/holidayList/"+ id + "/approve");
         document.body.appendChild(form);
         form.submit();
-        alert("함수 실행");
+        alert("approve 함수 호출됨! ID: " + id);
     }
 </script>
 

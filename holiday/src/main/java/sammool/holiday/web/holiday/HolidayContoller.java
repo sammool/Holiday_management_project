@@ -64,7 +64,7 @@ public class HolidayContoller {
         holidayService.approve(holiday);
         log.info("승인 후:{}", holiday.getStatus());
         //holidayService.approve(holidayService.findHoliday(holidayId));
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/";
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
     }
 
 
