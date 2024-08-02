@@ -95,6 +95,8 @@ public class HolidayServiceTest {
         //DB에 값이 잘 저장되었는가
         Assertions.assertThat(holiday.getStatus()).isEqualTo(findHoliday.getStatus());
         //Assertions.assertThat(holiday.getStatus()).isEqualTo(HolidayStatus.APPROVE);
+
+        List<Holiday> holiday2 = member.getHoliday();
     }
 
     public void setHolidayForm(HolidayApplyForm form){

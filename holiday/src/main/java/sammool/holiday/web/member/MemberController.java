@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
+import sammool.holiday.domain.Holiday;
 import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.JpaMemberRepository;
@@ -75,6 +76,13 @@ public class MemberController {
 
         memberService.updateMember(member_id,form);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+    }
+
+    @GetMapping("/{member_id}/holidayList")
+    public String holidayList(@PathVariable("member_id") String member_id, Model model){
+        List<Holiday> holidayList = memberService.getHolidayList(member_id);
+        model.addAttribute("holdayList", holidayList);
+        return "member/holidayList";
     }
 
 }

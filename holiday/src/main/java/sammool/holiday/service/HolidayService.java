@@ -71,7 +71,7 @@ public class HolidayService {
         holiday.approve();
         log.info("approve 실행 후={}", holiday.getStatus());
     }
-
+    
     @Transactional
     public void cancle(Long holidayId){
         Holiday holiday = holidayRepository.findHoliday(holidayId);
