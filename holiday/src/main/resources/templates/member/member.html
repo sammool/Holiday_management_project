@@ -42,6 +42,12 @@
 
     <div>
         <button 
+        th:onclick="|location.href='@{/members/{member_id}/holidayList(member_id = ${member.member_id})}'|"
+        type="button">휴가 리스트</button>
+    </div>
+
+    <div>
+        <button 
         th:onclick="|location.href='@{/members/{member_id}/edit(member_id = ${member.member_id})}'|"
         type="button">정보 수정</button>
     </div>

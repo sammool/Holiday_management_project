@@ -55,6 +55,7 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    @Transactional
     public List<Holiday> getHolidayList(String memberId){
         Member member = memberRepository.findOne(memberId).orElseThrow(() -> new IllegalArgumentException("member doesn't exist"));
         return member.getHoliday();

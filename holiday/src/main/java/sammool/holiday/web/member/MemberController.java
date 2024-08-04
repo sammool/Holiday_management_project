@@ -25,21 +25,20 @@ import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JdbcMemberRepository;
 import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.repository.MemberRepository;
+import sammool.holiday.service.HolidayService;
 import sammool.holiday.service.MemberService;
 import sammool.holiday.web.form.EditForm;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberController {
 
     private final JpaMemberRepository memberRepository;
     private final MemberService memberService;
+    private final HolidayService holidayService;
 
-    public MemberController(JpaMemberRepository memberRepository, MemberService memberService){
-        this.memberRepository = memberRepository;
-        this.memberService = memberService;
-    }
 
     @GetMapping
     public String members(Model model){
@@ -80,9 +79,14 @@ public class MemberController {
 
     @GetMapping("/{member_id}/holidayList")
     public String holidayList(@PathVariable("member_id") String member_id, Model model){
-        List<Holiday> holidayList = memberService.getHolidayList(member_id);
-        model.addAttribute("holdayList", holidayList);
+        List<Holiday> holidays = memberService.getHolidayList(member_id);
+        model.addAttribute("holidays", holidays);
         return "member/holidayList";
     }
 
+    @PostMapping("/{member_id}/{holiday_id}/cancel")
+    public String cancelHoliday(@PathVariable("holiday_id") Long holiday_id){
+        holidayService.cancle(holiday_id);
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+    }
 }

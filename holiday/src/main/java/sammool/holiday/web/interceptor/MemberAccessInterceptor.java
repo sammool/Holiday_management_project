@@ -31,7 +31,7 @@ public class MemberAccessInterceptor implements HandlerInterceptor{
             }
 
             String[] parts = requestURI.split("/");
-            String memberId = parts[parts.length-1];
+            String memberId = parts[2];
 
             if(!sessionMember.getMember_id().equals(memberId)){
                 log.info("접근 권한이 없는 사용자입니다");

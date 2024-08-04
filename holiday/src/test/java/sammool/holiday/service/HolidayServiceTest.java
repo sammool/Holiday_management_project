@@ -88,6 +88,8 @@ public class HolidayServiceTest {
 
         //when
         Holiday holiday = holidayService.applyHoliday(member.getMember_id(), leader.getLeader_id(),form);
+        Holiday holiday2 = holidayService.applyHoliday(member.getMember_id(), leader.getLeader_id(),form);
+       
         holidayService.approve(holiday.getId());
         Holiday findHoliday = holidayService.findHoliday(holiday.getId());
 
@@ -96,7 +98,8 @@ public class HolidayServiceTest {
         Assertions.assertThat(holiday.getStatus()).isEqualTo(findHoliday.getStatus());
         //Assertions.assertThat(holiday.getStatus()).isEqualTo(HolidayStatus.APPROVE);
 
-        List<Holiday> holiday2 = member.getHoliday();
+        List<Holiday> holidayList = member.getHoliday();
+        Assertions.assertThat(holidayList.size()).isEqualTo(2);
     }
 
     public void setHolidayForm(HolidayApplyForm form){

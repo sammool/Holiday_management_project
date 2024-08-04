@@ -24,15 +24,16 @@
 </thead>
 
 <tbody>
-<tr th:each="holiday : ${holidays}">
-    <td th:text="${holiday.id}"></td>
+<tr th:each="holiday , iterStat : ${holidays}">
+    <td th:text="${iterStat.index + 1}"></td>
     <td th:text="${holiday.kind.description}"></td>
     <td th:text="${holiday.holidayDays}"></td>
     <td th:text="${holiday.startDate}"></td>
     <td th:text="${holiday.endDate}"></td>
     <td th:text="${holiday.status.name()}"></td>
     <td>
-        <a th:if="${holiday.status.name() == 'WAIT'}" th:href="'javascript:cancel('+${holiday.id}+')'">CANCEL</a> 
+        <a th:if="${holiday.status.name() == 'WAIT'}" 
+        th:href="'javascript:cancel('+${holiday.member.member_id}+ ',' +${holiday.id}+')'">CANCEL</a> 
     </td>
 
 </tr>
@@ -42,10 +43,10 @@
 
 <script>
    
-    function cancel(id){
+    function cancel(memberId, holidayId){
         var form = document.createElement("form");
         form.setAttribute("method","post");
-        form.setAttribute("action","/leader/holidayList/" + id + "/cancel");
+        form.setAttribute("action","/members/" + encodeURIComponent(memberId) + "/" + holidayId + "/cancel");
         document.body.appendChild(form);
         form.submit();
     }
