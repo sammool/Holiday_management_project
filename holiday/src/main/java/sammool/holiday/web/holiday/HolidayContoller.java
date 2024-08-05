@@ -19,6 +19,7 @@ import sammool.holiday.service.HolidayService;
 import sammool.holiday.service.LeaderService;
 import sammool.holiday.service.MemberService;
 import sammool.holiday.web.form.HolidayApplyForm;
+import sammool.holiday.web.validation.HolidayValidator;
 
 @Controller
 @Slf4j
@@ -28,7 +29,9 @@ public class HolidayContoller {
     private final MemberService memberService;
     private final HolidayService holidayService;
     private final LeaderService leaderService;
+    private final HolidayValidator holidayValidator;
 
+    
     //휴가 신청 폼
     @GetMapping("/members/{memberId}/apply")
     public String applyForm(@PathVariable("memberId") String memberId, 
@@ -42,8 +45,17 @@ public class HolidayContoller {
 
     @PostMapping("/members/{memberId}/apply")
     public String apply(@PathVariable("memberId") String memberId, 
-                       @Validated @ModelAttribute("form") HolidayApplyForm form, BindingResult bindingResult){
+                       @Validated @ModelAttribute("form") HolidayApplyForm form, BindingResult bindingResult, Model model){
             
+            holidayValidator.validate(form, bindingResult);
+
+            if(bindingResult.hasErrors()){
+                log.info("휴가 신청 오류={}",bindingResult);
+                Member member = memberService.findMember(memberId);
+                model.addAttribute("member", member);
+                return "member/applyForm";
+            }
+
             holidayService.applyHoliday(memberId, "23-11111111", form);
             log.info("휴가 신청이 성공적으로 완료되었습니다");
             return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/"+memberId;
