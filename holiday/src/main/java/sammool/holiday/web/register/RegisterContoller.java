@@ -14,6 +14,7 @@ import sammool.holiday.domain.Member;
 import sammool.holiday.repository.JpaMemberRepository;
 import sammool.holiday.repository.MemberRepository;
 import sammool.holiday.service.MemberService;
+import sammool.holiday.web.form.RegisterForm;
 
 import java.util.Optional;
 

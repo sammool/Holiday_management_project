@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +42,7 @@ public class HolidayContoller {
 
     @PostMapping("/members/{memberId}/apply")
     public String apply(@PathVariable("memberId") String memberId, 
-                        @ModelAttribute("form") HolidayApplyForm form){
+                       @Validated @ModelAttribute("form") HolidayApplyForm form, BindingResult bindingResult){
             
             holidayService.applyHoliday(memberId, "23-11111111", form);
             log.info("휴가 신청이 성공적으로 완료되었습니다");
