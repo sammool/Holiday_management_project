@@ -87,6 +87,6 @@ public class MemberController {
     @PostMapping("/{member_id}/{holiday_id}/cancel")
     public String cancelHoliday(@PathVariable("holiday_id") Long holiday_id){
         holidayService.cancle(holiday_id);
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
+        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}/holidayList";
     }
 }

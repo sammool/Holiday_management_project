@@ -17,7 +17,7 @@ public class HolidayApplyForm {
 
     @NotNull
     @Max(15)
-    private Integer holidayDays;
+    private int holidayDays;
 
     @Future
     private LocalDate startDate;

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import sammool.holiday.domain.Member;
 import sammool.holiday.service.HolidayService;
 import sammool.holiday.service.LeaderService;
 import sammool.holiday.service.MemberService;
+import sammool.holiday.web.exception.NegativeDayException;
 import sammool.holiday.web.form.HolidayApplyForm;
 import sammool.holiday.web.validation.HolidayValidator;
 
@@ -47,7 +49,9 @@ public class HolidayContoller {
     public String apply(@PathVariable("memberId") String memberId, 
                        @Validated @ModelAttribute("form") HolidayApplyForm form, BindingResult bindingResult, Model model){
             
-            holidayValidator.validate(form, bindingResult);
+            if(holidayValidator.supports(form.getClass())){
+                holidayValidator.validate(form, bindingResult);
+            }  
 
             if(bindingResult.hasErrors()){
                 log.info("휴가 신청 오류={}",bindingResult);
@@ -80,6 +84,5 @@ public class HolidayContoller {
         holidayService.cancle(holidayId);
         return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/leader/holidayList";
     }
-
 
 }
