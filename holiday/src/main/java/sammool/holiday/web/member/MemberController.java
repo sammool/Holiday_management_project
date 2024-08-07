@@ -40,14 +40,6 @@ public class MemberController {
     private final HolidayService holidayService;
 
 
-    @GetMapping
-    public String members(Model model){
-        List<Member> members = memberRepository.findAll();
-        model.addAttribute("members", members);
-
-        return "member/members";
-    }
-
     @GetMapping("/{member_id}")
     public String member(Model model, @PathVariable String member_id){
         Optional<Member> optionalMember = memberRepository.findOne(member_id);
@@ -58,23 +50,6 @@ public class MemberController {
         } else{
             return "member/member";
         }
-        
-    }
-
-    @GetMapping("/{member_id}/edit")
-    public String editForm(@ModelAttribute("form") EditForm form){
-        return "member/editForm";
-    }
-
-    @PostMapping("/{member_id}/edit")
-    public String edit(@PathVariable String member_id, @Validated @ModelAttribute("form") EditForm form, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            log.info("errors = {}", bindingResult);
-            return "member/editForm";
-        }
-
-        memberService.updateMember(member_id,form);
-        return "redirect:https://shiny-barnacle-4pxgv5rp5q4c7pj6-8080.app.github.dev/members/{member_id}";
     }
 
     @GetMapping("/{member_id}/holidayList")

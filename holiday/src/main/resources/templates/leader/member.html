@@ -34,22 +34,17 @@
     <input type="text" id="points" name="points" th:value = "${member.points}" readonly>
     </div>
 
-    <div>
-        <button 
-        th:onclick="|location.href='@{/members/{member_id}/apply(member_id = ${member.member_id})}'|"
-        type="button">휴가 신청</button>
-    </div>
 
     <div>
         <button 
-        th:onclick="|location.href='@{/members/{member_id}/holidayList(member_id = ${member.member_id})}'|"
-        type="button">휴가 리스트</button>
+        th:onclick="|location.href='@{/leader/members/{member_id}/edit(member_id = ${member.member_id})}'|"
+        type="button">정보 수정</button>
     </div>
 
-  
+    
     <div>
         <button 
-        th:onclick="|location.href='@{/}'|"
+        th:onclick="|location.href='@{/leader/members}'|"
         type="button">돌아가기</button>
     </div>
 </body>
