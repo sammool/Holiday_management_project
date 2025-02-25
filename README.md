@@ -17,26 +17,26 @@ h2 database를 사용하였으며, JPA를 통해 객체들 간의 연관 관계�
 <img src="https://github.com/sammool/Holiday_management_project/blob/main/image%20(1).png?raw=true" width="300">
 
 - **세션, 인터셉터**를 이용하여 회원은 회원은 관리자 페이지에 접근하지 못하도록 하였습니다.
-- <br>
+<br>
 
 ### <회원 기능>
 
 ![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(2).png?raw=true)
 
 - **@Validated** 를 이용한 검증을 통해 가능할 휴가 일 수, 올바른 날짜를 입력 받도록 하였습니다.
-- <br>
+<br>
 
 <img src="https://github.com/sammool/Holiday_management_project/blob/main/image%20(3).png?raw=true" width="300">
 
 - 회원은 휴가를 취소할 수 있습니다.
-- <br>
+<br>
 
 ### <관리자 기능>
 
 ![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(4).png?raw=true) ![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(5).png?raw=true)
 
 - 관리자는 전체 회원의 리스트를 조회하고, 각 회원의 정보를 조회 및 수정할 수 있습니다.
-- <br>
+<br>
 
 ![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(6).png?raw=true)
 
