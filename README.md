@@ -14,7 +14,7 @@ h2 database를 사용하였으며, JPA를 통해 객체들 간의 연관 관계�
 
 ## 개발 주요 사항
 
-![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(1).png?raw=true)
+<img src="https://github.com/sammool/Holiday_management_project/blob/main/image%20(1).png?raw=true" width="300">
 
 - **세션, 인터셉터**를 이용하여 회원은 회원은 관리자 페이지에 접근하지 못하도록 하였습니다.
 
@@ -30,9 +30,7 @@ h2 database를 사용하였으며, JPA를 통해 객체들 간의 연관 관계�
 
 ### <관리자 기능>
 
-![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(4).png?raw=true)
-
-![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(5).png?raw=true)
+![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(4).png?raw=true) ![image.png](https://github.com/sammool/Holiday_management_project/blob/main/image%20(5).png?raw=true)
 
 - 관리자는 전체 회원의 리스트를 조회하고, 각 회원의 정보를 조회 및 수정할 수 있습니다.
 
