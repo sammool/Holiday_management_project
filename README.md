@@ -6,7 +6,7 @@ my first project using the Spring Framework
 
 ## 데이터베이스 구조
 
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/06e57708-263e-4489-b447-49c9c4fcac79/dd5e703d-fd2d-4cce-9cf3-fcc634083321/image.png)
+![image.png][(https://prod-files-secure.s3.us-west-2.amazonaws.com/06e57708-263e-4489-b447-49c9c4fcac79/dd5e703d-fd2d-4cce-9cf3-fcc634083321/image.png)](https://github.com/sammool/Holiday_management_project/blob/main/image.png?raw=true)
 
 프로젝트에서는 다음과 같은 데이터베이스 구조를 구성하였습니다:
 
